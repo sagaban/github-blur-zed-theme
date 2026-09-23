@@ -1,0 +1,7 @@
+id = "github-blur-theme"
+name = "GitHub Blur Theme"
+version = "0.1.0"
+schema_version = 1
+authors = ["Santiago Bandiera <5540774+sagaban@users.noreply.github.com>", "Pyae Sone Aung", "Clay Tercek"]
+description = "GitHub themes for Zed with blurred, translucent backgrounds"
+repository = "https://github.com/sagaban/github-blur-zed-theme"
