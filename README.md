@@ -60,9 +60,26 @@ rather than hard-coded per variant, so every GitHub variant is covered automatic
 `BLUR_LEVEL` in `src/generate.js` selects `light` / `medium` / `heavy` from `BLUR_LEVELS`
 in `src/blur.js` (default: `medium`, ~85% opaque chrome). Change it and re-run `npm run build`.
 
-Each level defines: `main` (window chrome), `surface`, `elements` (scrollbar thumb, hover),
-`active` (active tab, drop target), `control` (`border` — control outlines) and `seam`
-(pane borders).
+Each level defines: `main` (window background, title/status bar), `chrome` (panels, tab bar,
+terminal), `surface`, `elements` (scrollbar thumb, hover), `active` (active tab, drop target),
+`control` (`border` — control outlines) and `seam` (pane borders).
+
+### Two background tones
+
+GitHub ships two background tones — `bgColor/default` for the editor and the darker
+`bgColor/inset` for panels. These themes swap them: the window background carries the *darker*
+tone and the editor stays fully transparent on top of it, so the editor is the darker surface
+and keeps the full blur. The chrome around it (panels, tab bar, terminal) paints the lighter
+tone at the `chrome` alpha.
+
+Two caveats:
+
+- `GitHub Dark High Contrast` stays single-tone, because Primer defines both tokens as the
+  same color (`#010409`) for that variant.
+- How well the two tones separate depends on your wallpaper. The editor lets ~16% of it
+  through and the chrome only ~5%, so a bright wallpaper can make the editor come out
+  *lighter* than the chrome, inverting the split. Raising `chrome` toward `main` makes it
+  robust, at the cost of blur in the panels.
 
 ## Credits
 
